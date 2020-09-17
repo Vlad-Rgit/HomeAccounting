@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
+    app:startDestination="@id/homeListFragment">
+
+    <fragment
+        android:id="@+id/homeListFragment"
+        android:name="cf.feuerkrieg.homeaccounting.fragments.HomeListFragment"
+        android:label="@string/home_list" >
+        <action
+            android:id="@+id/action_homeListFragment_to_fragmentFlatList"
+            app:destination="@id/fragmentFlatList" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="cf.feuerkrieg.homeaccounting.fragments.ProfileFragment"
+        android:label="Профиль" />
+    <fragment
+        android:id="@+id/fragmentFlatList"
+        android:name="cf.feuerkrieg.homeaccounting.fragments.FlatListFragment"
+        android:label="Список квартир" >
+        <action
+            android:id="@+id/action_fragmentFlatList_to_fragmentFlatDetails"
+            app:destination="@id/fragmentFlatDetails" />
+        <argument
+            android:name="homeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFlatDetails"
+        android:name="cf.feuerkrieg.homeaccounting.fragments.FragmentFlatDetails"
+        android:label="FragmentFlatDetails" >
+        <argument
+            android:name="flatId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

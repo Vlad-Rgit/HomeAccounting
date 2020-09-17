@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="150"
+    android:propertyName="pathData"
+    android:valueFrom="@string/icon_check"
+    android:valueTo="@string/icon_edit"
+    android:valueType="pathType">
+
+</objectAnimator>

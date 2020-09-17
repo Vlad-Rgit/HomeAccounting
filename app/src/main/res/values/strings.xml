@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Home Accounting</string>
+    <string name="register">Зарегестрироваться</string>
+    <string name="enter">Войти</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="fio">ФИО</string>
+    <string name="home_list">Список домов</string>
+    <string name="register_title">Регистрация</string>
+    <string name="search">Поиск</string>
+    <string name="profile">Профиль</string>
+    <string name="fail_login">Неправильный логин или пароль</string>
+    <string name="edit">Edit</string>
+    <string name="syncing">Синхронизация с сервером...</string>
+    <string name="syncing_error">Отсутсвует соединение с сервером</string>
+    <string name="sync">Синхронизировать</string>
+</resources>
