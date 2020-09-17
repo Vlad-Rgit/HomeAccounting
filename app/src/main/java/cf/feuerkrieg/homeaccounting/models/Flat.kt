@@ -1,5 +1,7 @@
 package cf.feuerkrieg.homeaccounting.models
 
+import android.os.Parcel
+import android.os.Parcelable
 import cf.feuerkrieg.homeaccounting.database.models.FlatDatabase
 import cf.feuerkrieg.homeaccounting.interfaces.SortedItem
 import cf.feuerkrieg.homeaccounting.serializers.TimestampSerializer
@@ -22,7 +24,23 @@ data class Flat(
     var user: User,
     var bathroom: Bathroom? = null,
     var kitchen: Kitchen? = null,
-) : SortedItem {
+) : SortedItem, Parcelable {
+
+
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readByte(),
+        TODO("dateCreated"),
+        parcel.createByteArray(),
+        parcel.readParcelable(Home::class.java.classLoader)!!,
+        parcel.readParcelable(User::class.java.classLoader)!!,
+        parcel.readParcelable(Bathroom::class.java.classLoader),
+        parcel.readParcelable(Kitchen::class.java.classLoader)
+    )
 
     override fun areItemsTheSame(item: SortedItem): Boolean {
 
@@ -49,6 +67,34 @@ data class Flat(
         }
         else {
             throw IllegalArgumentException("Sorted Item is not a flat")
+        }
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(flatId)
+        parcel.writeInt(entrance)
+        parcel.writeInt(floor)
+        parcel.writeInt(number)
+        parcel.writeInt(post)
+        parcel.writeByte(hasAccess)
+        parcel.writeByteArray(signature)
+        parcel.writeParcelable(home, flags)
+        parcel.writeParcelable(user, flags)
+        parcel.writeParcelable(bathroom, flags)
+        parcel.writeParcelable(kitchen, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Flat> {
+        override fun createFromParcel(parcel: Parcel): Flat {
+            return Flat(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Flat?> {
+            return arrayOfNulls(size)
         }
     }
 }

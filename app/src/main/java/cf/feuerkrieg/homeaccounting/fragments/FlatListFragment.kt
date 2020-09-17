@@ -50,6 +50,13 @@ class FlatListFragment: Fragment() {
             adapter = flatAdapter
         }
 
+        binding.btnAddFlat.setOnClickListener {
+
+           /* val action = FlatListFragmentDirections
+                .actionFragmentFlatListToFragmentFlatDetails(null)*/
+
+        }
+
         return binding.root
     }
 

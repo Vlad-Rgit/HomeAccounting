@@ -31,7 +31,9 @@
         android:name="cf.feuerkrieg.homeaccounting.fragments.FragmentFlatDetails"
         android:label="FragmentFlatDetails" >
         <argument
-            android:name="flatId"
-            app:argType="integer" />
+            android:name="flat"
+            app:argType="cf.feuerkrieg.homeaccounting.models.Flat"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>
