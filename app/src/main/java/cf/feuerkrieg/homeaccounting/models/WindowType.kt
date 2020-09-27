@@ -2,6 +2,7 @@ package cf.feuerkrieg.homeaccounting.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import cf.feuerkrieg.homeaccounting.database.models.WindowTypeDatabase
 import kotlinx.serialization.Serializable
 
 
@@ -35,4 +36,17 @@ data class WindowType(
         }
     }
 
+    override fun toString(): String {
+        return windowType1
+    }
+}
+
+
+fun List<WindowType>.asDatabase(): List<WindowTypeDatabase> {
+    return this.map {
+        WindowTypeDatabase(
+            windowTypeId = it.windowTypeId,
+            windowType = it.windowType1
+        )
+    }
 }

@@ -108,7 +108,7 @@ class HomeListFragment: Fragment() {
     private fun onHomeClick(home: Home) {
 
         val action = HomeListFragmentDirections
-            .actionHomeListFragmentToFragmentFlatList(home.homeId)
+            .actionHomeListFragmentToFragmentFlatList(home)
 
         findNavController().navigate(action)
     }

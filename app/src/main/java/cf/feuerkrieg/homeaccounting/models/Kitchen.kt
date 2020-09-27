@@ -10,14 +10,15 @@ data class Kitchen(
     var flatId: Int = 0,
     var hasSupplyDevice: Byte = 0,
     var hasChannel: Byte = 0,
-    var accessToVentilation: AccessToVentilation,
-    var redevelopment: Redevelopment,
-    var windowType: WindowType,
-    var ventilation: Ventilation?,
-    var reasonAbcenses: MutableList<ReasonAbcenseVentilation>?
+    var accessToVentilation: AccessToVentilation? = null,
+    var redevelopment: Redevelopment? = null,
+    var windowType: WindowType? = null,
+    var ventilation: Ventilation? = null,
+    var reasonAbcenses: MutableList<ReasonAbcenseVentilation> = mutableListOf()
 ): Parcelable {
 
     constructor(parcel: Parcel) : this(
+
         parcel.readInt(),
         parcel.readByte(),
         parcel.readByte(),
@@ -30,7 +31,7 @@ data class Kitchen(
             ?.map {
                 it as ReasonAbcenseVentilation
             }
-            ?.toMutableList()
+            ?.toMutableList()!!
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -41,7 +42,7 @@ data class Kitchen(
         parcel.writeParcelable(redevelopment, flags)
         parcel.writeParcelable(windowType, flags)
         parcel.writeParcelable(ventilation, flags)
-        parcel.writeParcelableArray(reasonAbcenses?.toTypedArray(), flags)
+        parcel.writeParcelableArray(reasonAbcenses.toTypedArray(), flags)
     }
 
     override fun describeContents(): Int {

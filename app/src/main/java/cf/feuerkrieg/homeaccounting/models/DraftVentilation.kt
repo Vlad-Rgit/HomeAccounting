@@ -2,6 +2,7 @@ package cf.feuerkrieg.homeaccounting.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import cf.feuerkrieg.homeaccounting.database.models.DraftVentilationDatabase
 import kotlinx.serialization.Serializable
 
 
@@ -35,4 +36,14 @@ data class DraftVentilation(
         }
     }
 
+    override fun toString(): String {
+        return draftVentilation1
+    }
+
+    fun asDatabase(): DraftVentilationDatabase {
+        return DraftVentilationDatabase(
+            draftVentilationId = this.draftVentilationId,
+            draftVentilation = this.draftVentilation1
+        )
+    }
 }

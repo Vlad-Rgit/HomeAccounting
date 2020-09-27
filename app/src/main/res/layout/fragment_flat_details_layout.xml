@@ -1,10 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="cf.feuerkrieg.homeaccounting.converters.StringIntConverterKt"/>
+        <variable
+            name="viewModel"
+            type="cf.feuerkrieg.homeaccounting.viewmodels.FlatDetailsViewModel" />
+    </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutNumber"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:hint="@string/flat_number"
+            app:layout_constraintEnd_toStartOf="@+id/txtLayoutEntrance"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:text="@={StringIntConverterKt.convert(viewModel.flat.number)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutEntrance"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/entrance"
+            app:endIconDrawable="@drawable/baseline_format_list_numbered_black_18"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txtLayoutNumber"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edEntrance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:text="@={StringIntConverterKt.convert(viewModel.flat.entrance)}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutFloor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:hint="@string/floor"
+            app:endIconDrawable="@drawable/baseline_format_list_numbered_black_18"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toStartOf="@+id/txtLayoutPost"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtLayoutNumber">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edFloor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:text="@={StringIntConverterKt.convert(viewModel.flat.floor)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutPost"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/post"
+            app:endIconDrawable="@drawable/baseline_format_list_numbered_black_18"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txtLayoutFloor"
+            app:layout_constraintTop_toBottomOf="@id/txtLayoutEntrance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberSigned"
+                android:text="@={StringIntConverterKt.convert(viewModel.flat.post)}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="txtLayoutPost,txtLayoutFloor" />
+
+        <TextView
+            android:id="@+id/tv_access_to_flat"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/acces_to_flat"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/barrier"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+        <FrameLayout
+            style="@style/HomeAccounting.Style.SpinnerBackground"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_access_to_flat"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+            <Spinner
+                android:id="@+id/spinner_has_access_to_flat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

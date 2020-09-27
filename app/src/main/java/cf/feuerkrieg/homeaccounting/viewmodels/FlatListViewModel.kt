@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import cf.feuerkrieg.homeaccounting.HomeApplication
 import cf.feuerkrieg.homeaccounting.R
+import cf.feuerkrieg.homeaccounting.models.Home
 import cf.feuerkrieg.homeaccounting.repositories.FlatRepo
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class FlatListViewModel(private val homeId: Int): ViewModel() {
+class FlatListViewModel(val home: Home): ViewModel() {
 
     private val flatRepo = FlatRepo()
     private val appContext = HomeApplication.getAppContext()
@@ -26,7 +27,7 @@ class FlatListViewModel(private val homeId: Int): ViewModel() {
     fun refreshFlats() {
         viewModelScope.launch {
             try {
-                flatRepo.refreshFlats(homeId)
+                flatRepo.refreshFlats(home.homeId)
             }
             catch (ex: IOException) {
                  syncingErrorText.postValue(

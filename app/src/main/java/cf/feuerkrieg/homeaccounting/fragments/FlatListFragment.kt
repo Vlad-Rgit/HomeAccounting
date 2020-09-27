@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import cf.feuerkrieg.homeaccounting.adapters.FlatAdapter
 import cf.feuerkrieg.homeaccounting.databinding.FragmentFlatListLayoutBinding
@@ -21,10 +22,11 @@ class FlatListFragment: Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        val homeId = FlatListFragmentArgs.fromBundle(requireArguments()).homeId
+        val home = FlatListFragmentArgs.fromBundle(requireArguments())
+            .home
 
         viewModel = ViewModelProvider(this,
-            FlatListViewModelFactory(homeId))
+            FlatListViewModelFactory(home))
             .get(FlatListViewModel::class.java)
     }
 
@@ -52,9 +54,13 @@ class FlatListFragment: Fragment() {
 
         binding.btnAddFlat.setOnClickListener {
 
-           /* val action = FlatListFragmentDirections
-                .actionFragmentFlatListToFragmentFlatDetails(null)*/
+           val action = FlatListFragmentDirections
+                .actionFragmentFlatListToFlatHostFragment(
+                    null, viewModel.home)
 
+
+
+            findNavController().navigate(action)
         }
 
         return binding.root

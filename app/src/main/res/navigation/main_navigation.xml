@@ -19,21 +19,28 @@
         android:id="@+id/fragmentFlatList"
         android:name="cf.feuerkrieg.homeaccounting.fragments.FlatListFragment"
         android:label="Список квартир" >
-        <action
-            android:id="@+id/action_fragmentFlatList_to_fragmentFlatDetails"
-            app:destination="@id/fragmentFlatDetails" />
         <argument
-            android:name="homeId"
-            app:argType="integer" />
+            android:name="home"
+            app:argType="cf.feuerkrieg.homeaccounting.models.Home" />
+        <action
+            android:id="@+id/action_fragmentFlatList_to_flatHostFragment"
+            app:destination="@id/flatHostFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentFlatDetails"
-        android:name="cf.feuerkrieg.homeaccounting.fragments.FragmentFlatDetails"
-        android:label="FragmentFlatDetails" >
+        android:name="cf.feuerkrieg.homeaccounting.fragments.FlatDetailsFragment"
+        android:label="FragmentFlatDetails" />
+    <fragment
+        android:id="@+id/flatHostFragment"
+        android:name="cf.feuerkrieg.homeaccounting.fragments.FlatHostFragment"
+        android:label="Квартира">
         <argument
             android:name="flat"
+            android:defaultValue="@null"
             app:argType="cf.feuerkrieg.homeaccounting.models.Flat"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
+        <argument
+            android:name="home"
+            app:argType="cf.feuerkrieg.homeaccounting.models.Home" />
     </fragment>
 </navigation>

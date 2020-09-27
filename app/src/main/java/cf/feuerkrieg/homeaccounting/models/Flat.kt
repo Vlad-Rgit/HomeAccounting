@@ -2,7 +2,6 @@ package cf.feuerkrieg.homeaccounting.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import cf.feuerkrieg.homeaccounting.database.models.FlatDatabase
 import cf.feuerkrieg.homeaccounting.interfaces.SortedItem
 import cf.feuerkrieg.homeaccounting.serializers.TimestampSerializer
 import kotlinx.serialization.Serializable
@@ -21,7 +20,7 @@ data class Flat(
     var dateCreated: Timestamp? = null,
     var signature: ByteArray? = null,
     var home: Home,
-    var user: User,
+    var user: User? = null,
     var bathroom: Bathroom? = null,
     var kitchen: Kitchen? = null,
 ) : SortedItem, Parcelable {
@@ -37,7 +36,7 @@ data class Flat(
         TODO("dateCreated"),
         parcel.createByteArray(),
         parcel.readParcelable(Home::class.java.classLoader)!!,
-        parcel.readParcelable(User::class.java.classLoader)!!,
+        parcel.readParcelable(User::class.java.classLoader),
         parcel.readParcelable(Bathroom::class.java.classLoader),
         parcel.readParcelable(Kitchen::class.java.classLoader)
     )
@@ -101,17 +100,3 @@ data class Flat(
 
 
 
-fun List<Flat>.asDatabase(): List<FlatDatabase> {
-    return this.map {
-        FlatDatabase(it.flatId,
-                it.entrance,
-                it.floor,
-                it.number,
-                it.post,
-                it.hasAccess,
-                it.dateCreated,
-                it.signature,
-                it.home.homeId,
-                it.user.userId)
-    }
-}

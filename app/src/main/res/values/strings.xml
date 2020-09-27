@@ -14,4 +14,33 @@
     <string name="syncing">Синхронизация с сервером...</string>
     <string name="syncing_error">Отсутсвует соединение с сервером</string>
     <string name="sync">Синхронизировать</string>
+    <string name="entrance">Подъезд</string>
+    <string name="flat_number">Номер квартиры</string>
+    <string name="floor">Этаж</string>
+    <string name="post">Стояк</string>
+    <string name="acces_to_flat">Доступ в квартиру</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="you_have_no_access_to_the_flat">У вас нет доступа к квартире</string>
+    <string name="window_type">Тип окон</string>
+    <string name="supply_devices">Приточные устройства</string>
+    <string name="redevelopment">Перепланировка</string>
+    <string name="has_channel">Наличие канала</string>
+    <string name="access_to_ventilation">Доступ к вент. каналу</string>
+    <string name="reason_abcense">Причина отсутсвия/ограничения доступа</string>
+    <string name="has_draft_ventilation">Наличие тяги</string>
+    <string name="has_defects">Явные дефекты</string>
+
+
+    <string-array name="flat_pages">
+        <item>Детали</item>
+        <item>Кухня</item>
+        <item>Санузел</item>
+        <item>Итого</item>
+    </string-array>
+
+    <string-array name="no_yes">
+        <item>@string/no</item>
+        <item>@string/yes</item>
+    </string-array>
 </resources>

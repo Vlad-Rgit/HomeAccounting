@@ -2,6 +2,7 @@ package cf.feuerkrieg.homeaccounting.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import cf.feuerkrieg.homeaccounting.database.models.RedevelopmentDatabase
 import kotlinx.serialization.Serializable
 
 
@@ -35,4 +36,18 @@ data class Redevelopment(
         }
     }
 
+    override fun toString(): String {
+        return redevelopment1
+    }
+
+}
+
+
+fun List<Redevelopment>.asDatabase(): List<RedevelopmentDatabase> {
+    return this.map {
+        RedevelopmentDatabase(
+            redevelopmentId = it.redevelopmentId,
+            redevelopment = it.redevelopment1
+        )
+    }
 }

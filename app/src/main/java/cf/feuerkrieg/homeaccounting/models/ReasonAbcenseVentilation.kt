@@ -2,6 +2,7 @@ package cf.feuerkrieg.homeaccounting.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import cf.feuerkrieg.homeaccounting.database.models.ReasonAbcenseVentilationDatabase
 import kotlinx.serialization.Serializable
 
 
@@ -33,6 +34,17 @@ data class ReasonAbcenseVentilation(
         override fun newArray(size: Int): Array<ReasonAbcenseVentilation?> {
             return arrayOfNulls(size)
         }
+    }
+
+    override fun toString(): String {
+        return reasonAbcenseVentilation1
+    }
+
+    fun asDatabase(): ReasonAbcenseVentilationDatabase {
+        return ReasonAbcenseVentilationDatabase(
+            reasonAbcenseVentilationId = this.reasonAbcenseVentilationId,
+            reasonAbcenseVentilation = this.reasonAbcenseVentilation1
+        )
     }
 
 }

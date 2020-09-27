@@ -2,12 +2,13 @@ package cf.feuerkrieg.homeaccounting.models
 
 import android.os.Parcel
 import android.os.Parcelable
+import cf.feuerkrieg.homeaccounting.database.models.AccessToVentilationDatabase
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class AccessToVentilation(
-    val accessToVentilationId: Int,
-    val accessToVentilation1: String
+    val accesToVentilationId: Int,
+    val accesToVentilation1: String
 ): Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -16,8 +17,8 @@ data class AccessToVentilation(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(accessToVentilationId)
-        parcel.writeString(accessToVentilation1)
+        parcel.writeInt(accesToVentilationId)
+        parcel.writeString(accesToVentilation1)
     }
 
     override fun describeContents(): Int {
@@ -34,4 +35,14 @@ data class AccessToVentilation(
         }
     }
 
+    fun asDatabase(): AccessToVentilationDatabase {
+        return AccessToVentilationDatabase(
+            accessToVentilationId = this.accesToVentilationId,
+            accessToVentilation = this.accesToVentilation1
+        )
+    }
+
+    override fun toString(): String {
+        return accesToVentilation1
+    }
 }

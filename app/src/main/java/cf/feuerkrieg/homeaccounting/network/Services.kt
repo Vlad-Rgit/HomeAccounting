@@ -33,3 +33,23 @@ val homeApiService: HomeApiService by lazy {
     retrofit.create(HomeApiService::class.java)
 }
 
+val windowTypeApiService: WindowTypeApiService by lazy {
+    retrofit.create(WindowTypeApiService::class.java)
+}
+
+val redevelopmentApiService: RedevelopmentApiService by lazy {
+    retrofit.create(RedevelopmentApiService::class.java)
+}
+
+val accessToVentilationApiService: AccessToVentilationApiService by lazy {
+    retrofit.create(AccessToVentilationApiService::class.java)
+}
+
+val reasonAbcenseVentilationApiService:
+        ReasonAbcenseVentilationApiService by lazy {
+    retrofit.create(ReasonAbcenseVentilationApiService::class.java)
+}
+
+val draftVentilationApiService: DraftVentilationApiService by lazy {
+    retrofit.create(DraftVentilationApiService::class.java)
+}

@@ -12,7 +12,7 @@ data class Ventilation(
     var heightChannel: Float = 1f,
     var widthChannel: Float = 1f,
     var anemometrValue: Float = 0.1f,
-    var draftVentilation: DraftVentilation
+    var draftVentilation: DraftVentilation? = null
 ): Parcelable {
 
     constructor(parcel: Parcel) : this(

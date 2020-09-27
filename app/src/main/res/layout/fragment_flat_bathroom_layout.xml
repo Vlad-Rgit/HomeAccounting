@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="cf.feuerkrieg.homeaccounting.viewmodels.FlatDetailsViewModel" />
+    </data>
+
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <include layout="@layout/no_flat_access_layout"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/flat_bathroom_host"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            visibility="@{viewModel.hasFlatAccess}">
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+   </FrameLayout>
+
+</layout>

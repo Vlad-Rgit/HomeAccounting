@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="cf.feuerkrieg.homeaccounting.viewmodels.FlatDetailsViewModel"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/no_flat_access_layout"/>
+
+        <ScrollView
+            android:id="@+id/flat_kitchen_host"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            visibility="@{viewModel.hasFlatAccess}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_window_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/window_type"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+
+                <FrameLayout
+                    android:id="@+id/spinner_window_type_host"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+
+                    <Spinner
+                        android:id="@+id/spinner_window_type"
+                        items="@{viewModel.windowTypes}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_supply_devices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/supply_devices"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+
+                <FrameLayout
+                    android:id="@+id/spinner_supply_device_host"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+                    <Spinner
+                        android:id="@+id/spinner_supply_device"
+                        selectedIndex="@={viewModel.flat.kitchen.hasSupplyDevice}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        items="@{@stringArray/no_yes}" />
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_redevelopment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/redevelopment"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+
+                <FrameLayout
+                    android:id="@+id/spinner_redevelopments_host"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+                    <Spinner
+                        android:id="@+id/spinner_redevelopments"
+                        items="@{viewModel.redevelopments}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_has_channel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/has_channel"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+
+                <FrameLayout
+                    android:id="@+id/spinner_has_channel_host"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+
+                    <Spinner
+                        android:id="@+id/spinner_has_channel"
+                        selectedIndex="@={viewModel.flat.kitchen.hasChannel}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        items="@{@stringArray/no_yes}" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_access_to_ventilation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/access_to_ventilation"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2" />
+
+                <FrameLayout
+                    android:id="@+id/spinner_access_to_ventilation_host"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+
+                    <Spinner
+                        android:id="@+id/spinner_access_to_ventilation"
+                        items="@{viewModel.accessToVentilations}"
+                        selectedIndex="@={viewModel.selectedIndexAccessToVentilation}"
+                        selectedItem="@={viewModel.flat.kitchen.accessToVentilation}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_reason_abcense"
+                    visibility="@{viewModel.showReasonVentilationAbcense}"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reason_abcense"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="8dp"
+                    visibility="@{viewModel.showReasonVentilationAbcense}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    singleChoiceEntries="@{viewModel.reasonAbcenseVentilations}"
+                    selectedItems="@{viewModel.flat.kitchen.reasonAbcenses}"/>
+
+                <TextView
+                    visibility="@{!viewModel.showReasonVentilationAbcense}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/has_draft_ventilation"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:layout_marginTop="16dp"/>
+
+                <FrameLayout
+                    visibility="@{!viewModel.showReasonVentilationAbcense}"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        items="@{viewModel.draftVentilations}"
+                        selectedItem="@={viewModel.flat.kitchen.ventilation.draftVentilation}"/>
+                </FrameLayout>
+
+                <TextView
+                    visibility="@{!viewModel.showReasonVentilationAbcense}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/has_defects"
+                    android:textAppearance="?attr/textAppearanceSubtitle2"
+                    android:layout_marginTop="16dp"/>
+
+                <FrameLayout
+                    visibility="@{!viewModel.showReasonVentilationAbcense}"
+                    style="@style/HomeAccounting.Style.SpinnerBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp">
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        items="@{@stringArray/no_yes}"
+                        selectedIndex="@={viewModel.flat.kitchen.ventilation.hasDefects}"/>
+                </FrameLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+</layout>
